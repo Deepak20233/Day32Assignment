@@ -1,0 +1,27 @@
+mysql> use addressbookdb;
+Database changed
+mysql> create table addressbook (firstname varchar(20),lastname varchar(20),city varchar(20),state varchar(20),zip int,phonenumber int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into addressbook(firstname,lastname,city,state,zip,phonenumber) values ('Deepak','Rana','Hzb','Jharkhand',825301,9873637378),('Komal','Kumari','Kota','Rajasthan',83778,983737839);
+ERROR 1264 (22003): Out of range value for column 'phonenumber' at row 1
+mysql> insert into addressbook(firstname,lastname,city,state,zip,phonenumber) values ('Deepak','Rana','Hzb','Jharkhand',825301,987368),('Komal','Kumari','Kota','Rajasthan',83778,9837379);
+Query OK, 2 rows affected (0.08 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> update addressbook set city='Hazaribagh' where firstname='Deepak';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> delete from addressbook where firstname='Deepak';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from addressbook where city='Kota';
++-----------+----------+------+-----------+-------+-------------+
+| firstname | lastname | city | state     | zip   | phonenumber |
++-----------+----------+------+-----------+-------+-------------+
+| Komal     | Kumari   | Kota | Rajasthan | 83778 |     9837379 |
++-----------+----------+------+-----------+-------+-------------+
+1 row in set (0.00 sec)
+
+mysql>
